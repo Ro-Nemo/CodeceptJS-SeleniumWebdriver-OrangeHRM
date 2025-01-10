@@ -39,6 +39,4 @@ npm run codeceptjs crud_test.js
 
 Credits: Ro-Nemo
 Jan/2025
-=======
-# CodeceptJS-SeleniumWebdriver-OrangeHRM
->>>>>>> 38d15dca583ccc116d5801ccd0f90646ffd8d2af
+
