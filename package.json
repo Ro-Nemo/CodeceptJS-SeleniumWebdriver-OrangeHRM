@@ -1,0 +1,28 @@
+{
+    "name": "codeceptjs-tests",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "codeceptjs": "codeceptjs run --steps",
+        "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
+        "codeceptjs:ui": "codecept-ui --app",
+        "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples"
+    },
+    "devDependencies": {
+        "@codeceptjs/configure": "^1.0.1",
+        "@codeceptjs/examples": "^1.2.4",
+        "@codeceptjs/ui": "^1.2.0",
+        "@faker-js/faker": "^9.3.0",
+        "codeceptjs": "^3.6.10",
+        "playwright": "^1.49.1"
+    },
+    "dependencies": {
+        "@fnando/cnpj": "^2.0.0",
+        "@fnando/cpf": "^1.0.2",
+        "cpf_cnpj": "^0.2.0",
+        "faker": "^6.6.6",
+        "webdriverio": "^9.5.0"
+    }
+}
