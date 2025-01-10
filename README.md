@@ -3,7 +3,7 @@
 Validation: CRUD New user and Admin User in OrangeHRM Portal
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 
-
+OBS: The Demo video can be downloaded in: https://github.com/Ro-Nemo/CodeceptJS-SeleniumWebdriver-OrangeHRM
 
 Initial Installation 
 - Install Node 14 LTS

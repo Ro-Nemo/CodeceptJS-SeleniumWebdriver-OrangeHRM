@@ -2,7 +2,7 @@ const { faker } = require('@faker-js/faker');
 
 Feature('crud_test');
 
-Scenario('Test CRUD in Employee and Admin user',  ({ I }) => {
+Scenario('Test CRUD in Employee and Admin user', async ({ I, loginPage, addemployeePage, addAdminPage }) => {
 
 const userid = 'Admin';
 const password = 'admin123';
@@ -21,9 +21,7 @@ let EmployNumb = faker.number.int({ min: 100000000, max: 999999999 })
 I.amOnPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
 I.waitForElement('/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input', 20); 
 I.see('Username');
-I.fillField('/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input', userid);
-I.fillField('/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input', password);
-I.click('/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button'); //Login button
+loginPage.sendForm(userid, password);
 I.waitForElement('/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6', 20); 
 I.see('Dashboard');
 
@@ -40,12 +38,7 @@ I.see('Add Employee');
 
 //AND I create a new employee
 I.wait(3);
-I.fillField('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[1]/div[2]/input', fname);
-I.fillField('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[3]/div[2]/input', lname);
-I.doubleClick('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input');
-I.pressKey('Backspace');
-I.fillField('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input', EmployNumb);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]'); //Save button
+addemployeePage.sendForm(fname, lname, EmployNumb);
 I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/h6', 20); 
 I.see('Personal Details');
 
@@ -95,20 +88,7 @@ I.see('System Users');
 I.click('/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/button'); //Add button
 I.waitForElement('/html/body/div/div[1]/div[2]/div[2]/div/div/h6', 20); 
 I.see('Add User');
-I.click('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]/i'); //User Role select button
-I.pressKey('ArrowDown');
-I.pressKey('Enter'); //Select Admin Role
-I.fillField('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div/input', EmployName);
-I.wait(5);
-I.pressKey('ArrowDown');
-I.pressKey('Enter');
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]/i'); //Status
-I.pressKey('ArrowDown');
-I.pressKey('Enter'); //Select Enabled
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input', username);
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[1]/div/div[2]/input', password);
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input', password);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[3]/button[2]'); //Save button
+addAdminPage.sendForm(EmployName, username, password, password);
 I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
 I.see('System Users');
 
