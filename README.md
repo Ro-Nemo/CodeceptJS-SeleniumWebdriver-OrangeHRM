@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CodeceptJS-Webdriver Automation Demo Project
 Validation: CRUD New user and Admin User in OrangeHRM Portal
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
@@ -38,3 +39,6 @@ npm run codeceptjs crud_test.js
 
 Credits: Ro-Nemo
 Jan/2025
+=======
+# CodeceptJS-SeleniumWebdriver-OrangeHRM
+>>>>>>> 38d15dca583ccc116d5801ccd0f90646ffd8d2af
