@@ -97,7 +97,6 @@ I.see('Add User');
 addAdminPage.sendForm(EmployName, username, secret(password), secret(password));
 I.wait(10);
 I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
-//I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
 I.see('System Users');
 
 //AND I search the the new Admin User
