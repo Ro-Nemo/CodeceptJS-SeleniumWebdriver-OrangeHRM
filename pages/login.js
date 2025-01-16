@@ -4,8 +4,8 @@ module.exports = {
 
   // insert your locators
   fields: {
-    user: 'Username',
-    password: 'Password'
+    user: 'username',
+    pass: 'password'
    },
  
    submitButton: {
@@ -15,9 +15,9 @@ module.exports = {
    },
  
   // introducing methods
-  sendForm(user, password) { 
+  sendForm(user, pass) { 
     I.fillField(this.fields.user, user);
-    I.fillField(this.fields.password, password);
+    I.fillField(this.fields.pass, pass);
     I.click(this.submitButton);
    }
 

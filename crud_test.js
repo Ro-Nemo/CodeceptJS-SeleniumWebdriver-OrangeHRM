@@ -19,131 +19,138 @@ let EmployNumb = faker.number.int({ min: 100000000, max: 999999999 })
 
 //GIVEN I have the admin credentials to the orangehrmlive portal and create and edit a new employee.
 I.amOnPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-I.waitForElement('/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input', 20); 
-I.see('Username');
-loginPage.sendForm(userid, password);
-I.waitForElement('/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6', 20); 
+//I.waitForElement('.orangehrm-login-title', 20);     
+I.waitForElement({css: 'div.orangehrm-login-slot'}, 20);     
+I.see('Login');
+loginPage.sendForm(userid, secret(password));
+I.waitForElement({css: 'div.oxd-topbar-header-title'}, 20);    
 I.see('Dashboard');
 
-
 //WHEN I Navigate to "PIM" on the side navigation bar. 
-I.click('/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span');  //PIM menu
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
+I.click('PIM', {css: 'div.oxd-sidepanel-body'}); 
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
 I.see('Employee Information');
 
 //AND I Click on "Add." 
-I.click('/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/button'); //Add button
-I.waitForElement('/html/body/div/div[1]/div[2]/div[2]/div/div/h6', 20); 
+I.click('Add', {css: 'div.orangehrm-header-container'});      //add button
+//I.click({css: 'button.oxd-button--secondary:nth-child(1)'});   
+
+I.waitForElement({css: 'div.oxd-layout-context'}, 20);    
 I.see('Add Employee');
 
 //AND I create a new employee
 I.wait(3);
 addemployeePage.sendForm(fname, lname, EmployNumb);
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/h6', 20); 
+I.waitForElement({css: 'div.orangehrm-horizontal-padding.orangehrm-vertical-padding'}, 20);   
 I.see('Personal Details');
 
 //AND I search the new employee
-I.click('/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span');  //PIM menu
-I.waitForElement('/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6', 20); 
-I.see('PIM');
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input', EmployName);
-I.wait(5);
+I.click('PIM', {css: 'div.oxd-sidepanel-body'}); 
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
+I.see('Employee Information');   
+I.fillField({css: 'div:nth-child(1) > div > div:nth-child(2) > div > div > input'}, EmployName);  
+I.wait(3);
 I.pressKey('ArrowDown');
 I.pressKey('Enter');
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]');  //Search button
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
 I.wait(3);
 I.see(EmployNumb);
 
 //THEN I edit the new employee
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[9]/div/button[1]');  //Edit button
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/h6', 20); 
+I.click({css: 'button.oxd-table-cell-action-space:nth-child(1)'});    //edit button
+I.waitForElement({css: 'div.orangehrm-horizontal-padding.orangehrm-vertical-padding'}, 20);
+I.wait(3);
 I.see('Personal Details');
 I.see(EmployName);
-I.doubleClick('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input'); 
+I.doubleClick({css: 'div.oxd-form-row:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)'}); 
 I.pressKey('Backspace');
 EmployNumb = faker.number.int({ min: 100000000, max: 999999999 }) //new Employee Id
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input', EmployNumb); //Update Employee Id field
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/button');  //Save button
-I.click('/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span');  //PIM menu
-I.waitForElement('/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6', 20); 
-I.see('PIM');
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input', EmployName);
+I.fillField({css: 'div.oxd-form-row:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)'}, EmployNumb); //Update Employee Id field
+I.click('Save', {css: 'div.orangehrm-horizontal-padding.orangehrm-vertical-padding'});   
 I.wait(5);
+I.click('PIM', {css: 'div.oxd-sidepanel-body'}); 
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
+I.see('Employee Information');  
+I.fillField({css: 'div:nth-child(1) > div > div:nth-child(2) > div > div > input'}, EmployName);  
+I.wait(3);
 I.pressKey('ArrowDown');
 I.pressKey('Enter');
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]');  //Search button
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
 I.wait(3);
 I.see(EmployNumb); //View new Employee Id
-
 
 
 //GIVEN I have the admin credentials to assign a new employee as an Admin User.
 
 //WHEN I navigate to "Admin" on the side navigation bar. 
-I.click('/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a/span');  //Admin menu
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
+I.click('Admin', {css: 'div.oxd-sidepanel-body'});    //Admin menu
+I.wait(3);
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
 I.see('System Users');
 
 //AND I assign the new employee as an Admin User
-I.click('/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/button'); //Add button
-I.waitForElement('/html/body/div/div[1]/div[2]/div[2]/div/div/h6', 20); 
+I.click('Add', {css: 'div.orangehrm-header-container'});      //add button
+I.waitForElement({css: 'div.oxd-layout-context'}, 20);    
+I.wait(3);
 I.see('Add User');
-addAdminPage.sendForm(EmployName, username, password, password);
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
+addAdminPage.sendForm(EmployName, username, secret(password), secret(password));
+I.wait(10);
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
+//I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20); 
 I.see('System Users');
 
 //AND I search the the new Admin User
-I.wait(3);
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input', username);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]'); //Search button
+I.fillField({css: 'input.oxd-input:nth-child(1)'}, username); //User Name field
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
 I.wait(3);
 I.see(EmployName);
 
 //AND I edit the new admin user
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[6]/div/button[2]');  //Edit button
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/h6', 20); 
-I.see('Edit User');
+I.click({css: 'button.oxd-icon-button:nth-child(2)'});    //edit button
+I.waitForElement({css: 'div.oxd-input-group__label-wrapper'}, 20);    
 I.wait(5);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]/i'); //Status
+I.see('Edit User');
+I.click({css: 'div:nth-child(3) > div > div:nth-child(2) > div > div > div.oxd-select-text--after'}); //Status select button   
 for (i = 1; i <= 2; i++) {
 	I.pressKey('ArrowDown');
   }
 I.pressKey('Enter'); //Update to disabled
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]'); //Save button
-I.waitForElement('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[1]/h5', 20);
+I.click({css: 'button.oxd-button:nth-child(3)'});   //Save button
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
 I.wait(5);
 I.see('System Users');
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input', username);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]'); //Search button
+I.fillField({css: 'input.oxd-input:nth-child(1)'}, username); //User Name field
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
 I.wait(5);
 I.see(EmployName);
 I.see('Disabled'); // View the Admin with the updated status to Disabled
 
-
 //THEN I delete the Admin role for the new employee
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[6]/div/button[1]'); //Delete button
+I.click({css: 'button.oxd-table-cell-action-space:nth-child(1)'});   //Delete button
 I.wait(1);
-I.click('//*[@id="app"]/div[3]/div/div/div/div[3]/button[2]'); //Yes, Delete button
+I.click('Yes, Delete');    //Yes, Delete button
 I.wait(5);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]'); //Search button
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
 I.wait(3);
 I.dontSee(EmployName);
 
 //AND I delete the new employee
-I.click('/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span');  //PIM menu
-I.waitForElement('/html/body/div/div[1]/div[1]/header/div[1]/div[1]/span/h6', 20); 
-I.see('PIM');
-I.fillField('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input', EmployName);
-I.wait(5);
+I.click('PIM', {css: 'div.oxd-sidepanel-body'}); 
+I.waitForElement({css: 'div.oxd-table-filter-header-title'}, 20);    
+I.see('Employee Information');   
+I.fillField({css: 'div:nth-child(1) > div > div:nth-child(2) > div > div > input'}, EmployName);  
+I.wait(3);
 I.pressKey('ArrowDown');
 I.pressKey('Enter');
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]');  //Search button
-I.wait(5);
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
+I.wait(3);
 I.see(EmployNumb);
-I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[9]/div/button[2]'); //Delete button
+I.click({css: 'button.oxd-icon-button:nth-child(2)'});   //Delete button
 I.wait(1);
-I.click('//*[@id="app"]/div[3]/div/div/div/div[3]/button[2]'); //Yes, Delete button
+I.click('Yes, Delete');    //Yes, Delete button
 I.wait(5);
+I.click({css: 'button.oxd-button:nth-child(2)'});   //Search button
+I.wait(3);
 I.dontSee(EmployNumb);
 
 

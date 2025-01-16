@@ -5,26 +5,27 @@ module.exports = {
     // insert your locators
     fields: {
       Fullname: 'Type for hints...',
-      Username: '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input',
-      Password1: '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[1]/div/div[2]/input',
-      Password2: '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input',
+      Username: ({css: 'div.oxd-grid-item:nth-child(4) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)'}),
+      Password1: ({css: '.user-password-cell > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)'}),
+      Password2: ({css: 'div.oxd-form-row:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)'}),
      },
-   
+
      submitButton: {
-      xpath: '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[3]/button[2]',
-      
+      css: 'button.oxd-button:nth-child(3)',
+
      },
    
     // introducing methods
     sendForm(Fullname, Username, Password1, Password2) { 
-      I.click('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]/i'); //User Role select button
+      
+      I.click({css: 'div:nth-child(1) > div > div:nth-child(2) > div > div > div.oxd-select-text-input'}); //User Role select button
       I.pressKey('ArrowDown');
       I.pressKey('Enter'); //Select Admin Role
       I.fillField(this.fields.Fullname, Fullname);
       I.wait(5);
       I.pressKey('ArrowDown');
       I.pressKey('Enter');
-      I.click('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]/i'); //Status
+      I.click({css: 'div:nth-child(3) > div > div:nth-child(2) > div > div > div.oxd-select-text-input'}); //Status select button      
       I.pressKey('ArrowDown');
       I.pressKey('Enter'); //Select Enabled
       I.fillField(this.fields.Username, Username);

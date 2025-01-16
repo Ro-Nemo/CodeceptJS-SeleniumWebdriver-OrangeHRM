@@ -4,21 +4,23 @@ module.exports = {
 
    // insert your locators
    fields: {
-    firstname: 'First Name',
-    lastname: 'Last Name',
-    EmployeeId: '/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input'
+    Firstname: 'firstName',
+    Lastname: 'lastName',
+    EmployeeId: ({css: 'div.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input'}),
+
+
    },
  
    submitButton: {
-    xpath: '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]',
-    
+    css: 'button.oxd-button.oxd-button--medium.oxd-button--secondary.orangehrm-left-space',
+
    },
  
   // introducing methods
-  sendForm(firstname, lastname, EmployeeId) { 
-    I.fillField(this.fields.firstname, firstname);
-    I.fillField(this.fields.lastname, lastname);
-    I.doubleClick('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input');
+  sendForm(Firstname, Lastname, EmployeeId) { 
+    I.fillField(this.fields.Firstname, Firstname);
+    I.fillField(this.fields.Lastname, Lastname);
+    I.doubleClick({css: 'div.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input'});
     I.pressKey('Backspace');
     I.fillField(this.fields.EmployeeId, EmployeeId);
     I.click(this.submitButton);
