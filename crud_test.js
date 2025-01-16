@@ -23,6 +23,7 @@ I.amOnPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 I.waitForElement({css: 'div.orangehrm-login-slot'}, 20);     
 I.see('Login');
 loginPage.sendForm(userid, secret(password));
+I.wait(5);
 I.waitForElement({css: 'div.oxd-topbar-header-title'}, 20);    
 I.see('Dashboard');
 
@@ -34,13 +35,13 @@ I.see('Employee Information');
 //AND I Click on "Add." 
 I.click('Add', {css: 'div.orangehrm-header-container'});      //add button
 //I.click({css: 'button.oxd-button--secondary:nth-child(1)'});   
-
 I.waitForElement({css: 'div.oxd-layout-context'}, 20);    
 I.see('Add Employee');
 
 //AND I create a new employee
 I.wait(3);
 addemployeePage.sendForm(fname, lname, EmployNumb);
+I.wait(5);
 I.waitForElement({css: 'div.orangehrm-horizontal-padding.orangehrm-vertical-padding'}, 20);   
 I.see('Personal Details');
 

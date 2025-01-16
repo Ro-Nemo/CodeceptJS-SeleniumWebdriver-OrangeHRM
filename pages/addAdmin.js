@@ -22,7 +22,7 @@ module.exports = {
       I.pressKey('ArrowDown');
       I.pressKey('Enter'); //Select Admin Role
       I.fillField(this.fields.Fullname, Fullname);
-      I.wait(5);
+      I.wait(3);
       I.pressKey('ArrowDown');
       I.pressKey('Enter');
       I.click({css: 'div:nth-child(3) > div > div:nth-child(2) > div > div > div.oxd-select-text-input'}); //Status select button      
