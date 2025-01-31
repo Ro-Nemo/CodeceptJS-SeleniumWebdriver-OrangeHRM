@@ -10,8 +10,10 @@ module.exports = {
  
    submitButton: {
 
-  xpath: '//*[@id="app"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button',
-    
+  //css: '.oxd-button.oxd-button--medium.oxd-button--main.orangehrm-login-button',
+  css: '.orangehrm-login-button',
+
+
    },
  
   // introducing methods

@@ -20,7 +20,9 @@ let EmployNumb = faker.number.int({ min: 100000000, max: 999999999 })
 //GIVEN I have the admin credentials to the orangehrmlive portal and create and edit a new employee.
 I.amOnPage('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
 //I.waitForElement('.orangehrm-login-title', 20);     
-I.waitForElement({css: 'div.orangehrm-login-slot'}, 20);     
+//I.waitForElement({css: 'div.orangehrm-login-slot'}, 20);     
+//I.waitForElement({css: '.oxd-text.oxd-text--h5.orangehrm-login-title'}, 20);     
+I.waitForElement({css: '.orangehrm-login-title'}, 20);     
 I.see('Login');
 loginPage.sendForm(userid, secret(password));
 I.wait(5);
